@@ -58,7 +58,7 @@ export default {
       //   // eslint-disable-next-line no-console
       //   .catch(err => console.log(err));
       if (localStorage.getItem("todos")) {
-        this.todos = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        this.todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
       }
       // this.todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
     }
