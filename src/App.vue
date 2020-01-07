@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+/* eslint-disable no-console */
+/* eslint-disable no-console */
 <template>
   <div id="app">
     <Header />
@@ -28,6 +30,15 @@ export default {
       todos: []
     };
   },
+  created() {
+    // axios
+    //   .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+    //   .then(res => (this.todos = res.data))
+    //   // eslint-disable-next-line no-console
+    //   .catch(err => console.log(err));
+
+    this.todos = JSON.parse(localStorage.getItem("STORAGE_KEY") || "[]");
+  },
   methods: {
     deleteTodo(id) {
       // axios
@@ -36,7 +47,7 @@ export default {
       //   // eslint-disable-next-line no-console
       //   .catch(err => console.log(err));
       this.todos = this.todos.filter(todo => todo.id !== id);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos));
+      localStorage.removeItem(STORAGE_KEY, JSON.stringify(this.todos));
     },
     addTodo(newTodo) {
       // const { title, completed } = newTodo;
@@ -50,17 +61,6 @@ export default {
       //   .catch(err => console.log(err));
       this.todos = [...this.todos, newTodo];
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos));
-    },
-    created() {
-      // axios
-      //   .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
-      //   .then(res => (this.todos = res.data))
-      //   // eslint-disable-next-line no-console
-      //   .catch(err => console.log(err));
-      if (localStorage.getItem("todos")) {
-        this.todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      }
-      // this.todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
     }
   }
 };
